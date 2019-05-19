@@ -1,10 +1,10 @@
 # ToxicBERT
-
 **Fine-tuning BERT for Toxicity classification**
 
 *When first built toxicity models, they found that the models incorrectly learned to associate the names of frequently attacked identities with toxicity. Models predicted a high likelihood of toxicity for comments containing those identities (e.g. "gay"), even when those comments were not actually toxic (such as "I am a gay woman"). This happens because training data was pulled from available sources where unfortunately, certain identities are overwhelmingly referred to in offensive ways. Training a model from data with these imbalances risks simply mirroring those biases back to users.*
 
 This repository shows how to train bert model on : [Jigsaw Unintended Bias in Toxicity Classification](https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification)
+- - - -
 
 
 ## Prerequisites:
@@ -18,8 +18,14 @@ This repository shows how to train bert model on : [Jigsaw Unintended Bias in To
 **Download the pre-trained model**
 + [Download Goolge BERT Model](https://github.com/google-research/bert) - I recommend 'uncased_L-12_H-768_A-12' version**
 + Unzip and put it in the `__model__` folder.
++ [Download Toxic Dataset](https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification/data/)
 + Put train, dev (if any) and test dataset into `__data__` folder.
 
+```
+CSV Data Format:
+    Columns: (index, label, comment_text) # Column names are not important. Order is.
+```
+- - - -
 
 ## How to work with this?
 **It's easy**
@@ -45,7 +51,10 @@ $ ./run_eval.sh
 $ ./run_predict.sh
 ```
 
+## Performance
+**Achieved an AUC of 0.93 on Test Set.**
+
+- - - -
 
 Drop me a mail or connect with me on [Linkedin](https://linkedin.com/in/kumar-nityan-suman/) .
-
 If you like the work I do, show your appreciation by 'FORK', 'START', or 'SHARE'.
