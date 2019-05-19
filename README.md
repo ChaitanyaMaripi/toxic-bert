@@ -9,18 +9,15 @@ This repository shows how to train bert model on : [Jigsaw Unintended Bias in To
 ## Prerequisites:
     + tensorflow==1.13.1
     + numpy==1.16.3
-    | Python 3.6 - Anaconda Python Distribution (Recommended)|
+    + Python 3.7 - Anaconda Python Distribution (Recommended)
 
 ## Getting Started with BERT
 **Download the pre-trained model**
-```
-+ [Goolge BERT](https://github.com/google-research/bert)
-*Multiple versions of BERT is available. Select as per your needs. I recommend 'uncased_L-12_H-768_A-12' version/*
+# Multiple versions of BERT is available. I recommend 'uncased_L-12_H-768_A-12' version/
++ [Download Goolge BERT Model](https://github.com/google-research/bert)
++ Unzip it and put it in the `__data__` folder.
++ Put train, validation and test dataset into `__data__` folder.
 
-+ Unzip it and put it in the __data__ folder.
-
-+ Put train, validation and test dataset into __data__ folder.
-```
 
 ## How to train the mode ?
 **It's easy**
