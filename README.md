@@ -17,7 +17,7 @@ This repository shows how to train bert model on : [Jigsaw Unintended Bias in To
 ## Getting Started with BERT
 **Download the pre-trained model**
 + [Download Goolge BERT Model](https://github.com/google-research/bert) - I recommend 'uncased_L-12_H-768_A-12' version**
-+ Unzip and put it in the `__data__` folder.
++ Unzip and put it in the `__model__` folder.
 + Put train, validation (if any) and test dataset into `__data__` folder.
 
 
