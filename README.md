@@ -23,17 +23,25 @@ This repository shows how to train bert model on : [Jigsaw Unintended Bias in To
 
 ## How to work with this?
 **It's easy**
++ Set model checkpoint at --init_checkpoint (bert_model.ckpt file) *Note: Other than training Checkpoint name available in a file called checkpoint in model_dir folder.*
++ Set pre-trained model weights at ----vocab_file (vocab.txt file) and --bert_config_file (bert_config.json file)
+
+**Train model**
 ```
-# Train model
 $ ./run_model.sh
-
-# Train and Validate model: Latest model checkpoint is used for evaluation
+```
+**Train and Validate model: Latest model checkpoint is used for evaluation**
+```
 $ ./run_model_new.sh
+```
 
-# Validate model: Set the model checkpoint to be used at --init_checkpoint
+**Validate model: Set the model checkpoint to be used at --init_checkpoint**
+```
 $ ./run_eval.sh
+```
 
-# Get predictions: Set the model checkpoint to be used at --init_checkpoint
+**Get predictions: Set the model checkpoint to be used at --init_checkpoint**
+```
 $ ./run_predict.sh
 ```
 
@@ -41,4 +49,3 @@ $ ./run_predict.sh
 Drop me a mail or connect with me on [Linkedin](https://linkedin.com/in/kumar-nityan-suman/) .
 
 If you like the work I do, show your appreciation by 'FORK', 'START', or 'SHARE'.
-
