@@ -68,7 +68,7 @@ class DataProcessor(object):
 class ToxicProcessor(DataProcessor):
     """Processor for the Semeval 2014 data set."""
 
-    def get_train_examples(self, filename, data_dir):
+    def get_train_examples(self, data_dir):
         """See base class."""
         try:
             lines = self._read_csv(os.path.join(data_dir, "train.csv"), "train")
@@ -76,7 +76,7 @@ class ToxicProcessor(DataProcessor):
         except Exception as e:
             print(e)
     
-    def get_test_examples(self, filename, data_dir):
+    def get_test_examples(self, data_dir):
         """See base class."""
         try:
             lines = self._read_csv(os.path.join(data_dir, "test.csv"), "test")
@@ -84,11 +84,12 @@ class ToxicProcessor(DataProcessor):
         except Exception as e:
             print(e)
 
-    def get_labels(self, filename):
+    @staticmethod
+    def get_labels(self):
         """See base class."""
         return ["Not Toxic", "Toxic"]
 
-    def _create_examples(self, filename, lines, set_type):
+    def _create_examples(self, lines, set_type):
         """Creates examples for the training and dev sets."""
         examples = list()
         for (i, line) in enumerate(lines):
