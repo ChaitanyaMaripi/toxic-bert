@@ -146,20 +146,9 @@ def convert_single_example(ex_index, example, label_list, max_seq_length, tokeni
 	# Access tokens from text_a
 	tokens_a = tokenizer.tokenize(example.text_a)
 	
-	# If text_b is present, access text_b
-	tokens_b = None
-	if example.text_b:
-		tokens_b = tokenizer.tokenize(example.text_b)
-
-	if tokens_b:
-		# Modifies `tokens_a` and `tokens_b` in place so that the total
-		# length is less than the specified length.
-		# Account for [CLS], [SEP], [SEP] with "- 3"
-		_truncate_seq_pair(tokens_a, tokens_b, max_seq_length - 3)
-	else:
-		# Account for [CLS] and [SEP] with "- 2"
-		if len(tokens_a) > max_seq_length - 2:
-			tokens_a = tokens_a[0:(max_seq_length - 2)]
+	# Account for [CLS] and [SEP] with "- 2"
+	if len(tokens_a) > max_seq_length - 2:
+		tokens_a = tokens_a[0:(max_seq_length - 2)]
 
 	# The convention in BERT is:
     # For single sequences:
@@ -176,8 +165,8 @@ def convert_single_example(ex_index, example, label_list, max_seq_length, tokeni
 	# For classification tasks, the first vector (corresponding to [CLS]) is
 	# used as the "sentence vector". Note that this only makes sense because
 	# the entire model is fine-tuned.
-	tokens = []
-	segment_ids = []
+	tokens = list()
+	segment_ids = list()
 	tokens.append("[CLS]")
 	segment_ids.append(0)
 	for token in tokens_a:
@@ -185,14 +174,6 @@ def convert_single_example(ex_index, example, label_list, max_seq_length, tokeni
 		segment_ids.append(0)
 	tokens.append("[SEP]")
 	segment_ids.append(0)
-
-	if tokens_b:
-		for token in tokens_b:
-			tokens.append(token)
-			segment_ids.append(1)
-		# Add separator token
-		tokens.append("[SEP]")
-		segment_ids.append(1)
 
 	input_ids = tokenizer.convert_tokens_to_ids(tokens)
 
