@@ -46,25 +46,22 @@ class DataProcessor(object):
     def get_labels(self):
         """Gets the list of labels for this data set."""
         raise NotImplementedError()
-
+    
     @classmethod
-    def _read_tsv(cls, input_file, quotechar=None):
-        """Reads a tab separated value file."""
-        with open(input_file, "r") as f:
-            reader = csv.reader(f, delimiter="\t", quotechar=quotechar)
-            lines = list()
-            for line in reader:
-                lines.append(line)
-            return lines
-
-    @classmethod
-    def _read_csv(cls, input_file, quotechar=None):
+    def _read_csv(cls, input_file, stage):
         """Reads a comma separated value file."""
-        with open(input_file, "r") as f:
-            reader = csv.reader(f, delimiter=",", quotechar=quotechar)
-            lines = list()
-            for line in reader:
-                lines.append(line)
+        lines = list()
+        with open(input_file, mode="r") as f:
+            reader = csv.reader(f, delimiter=",")
+            if stage == "train":
+                for line in reader:
+                    text = line[2]
+                    label = line[1]
+                    lines.append((label, text))
+            else:
+                # Testing stage
+                for line in reader:
+                    lines.append(line[1])
             return lines
 
 
@@ -74,34 +71,40 @@ class ToxicProcessor(DataProcessor):
     def get_train_examples(self, filename, data_dir):
         """See base class."""
         try:
-            lines = self._read_csv(os.path.join(data_dir, "train.csv"))
-            examples = self._create_examples(filename, lines, "train")
+            lines = self._read_csv(os.path.join(data_dir, "train.csv"), "train")
+            examples = self._create_examples(lines, "train")
         except Exception as e:
             print(e)
     
     def get_test_examples(self, filename, data_dir):
         """See base class."""
         try:
-            lines = self._read_csv(os.path.join(data_dir, "test.csv"))
-            examples = self._create_examples(filename, lines, "test")
+            lines = self._read_csv(os.path.join(data_dir, "test.csv"), "test")
+            examples = self._create_examples(lines, "test")
         except Exception as e:
             print(e)
 
     def get_labels(self, filename):
         """See base class."""
-            return [0, 1]
+        return ["Not Toxic", "Toxic"]
 
     def _create_examples(self, filename, lines, set_type):
         """Creates examples for the training and dev sets."""
         examples = list()
         for (i, line) in enumerate(lines):
-            guid = "%s-%s" % (set_type, i)
-            text_a = tokenization.convert_to_unicode(str(line[2]))
-            if set_type == "test":
-                label = None
+            guid = "{}-{}".format(set_type.upper(), str(i))
+            if set_type == "train":
+                text_a = tokenization.convert_to_unicode(str(line[1]))
+                if line[0] >= 0.4:
+                    # After visualizing data came up with this separator
+                    ins_label = "Toxic"
+                else:
+                    ins_label = "Not Toxic"
+                label = tokenization.convert_to_unicode(ins_label)
             else:
-                label = tokenization.convert_to_unicode(str(line[1]))
-            # print("Text_a: {} -> Text_b: {} -> Label: {}\n".format(text_a, text_b, label))
+                text_a = tokenization.convert_to_unicode(str(line[0]))
+                label = None
+            print("Guid: {}\t Text_a: {} -> Label: {}\n".format(guid, text_a, text_b, label))
             examples.append(InputExample(guid=guid, text_a=text_a, label=label))
         return examples
 
