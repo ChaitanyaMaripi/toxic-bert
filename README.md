@@ -8,9 +8,9 @@ This repository shows how to train bert model on : [Jigsaw Unintended Bias in To
 
 
 ## Prerequisites:
-    + tensorflow==1.13.1
-    + numpy==1.16.3
-    + Python==3.7 - Anaconda Python Distribution (Recommended)
++ tensorflow==1.13.1
++ numpy==1.16.3
++ Python==3.7 - Anaconda Python Distribution (Recommended)
 *For more details please refer to REQUIREMENTS.txt*
 
 
