@@ -6,20 +6,22 @@
 
 This repository shows how to train bert model on : [Jigsaw Unintended Bias in Toxicity Classification](https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification)
 
+
 ## Prerequisites:
     + tensorflow==1.13.1
     + numpy==1.16.3
-    + Python 3.7 - Anaconda Python Distribution (Recommended)
+    + Python==3.7 - Anaconda Python Distribution (Recommended)
+*For more details please refer to REQUIREMENTS.txt*
+
 
 ## Getting Started with BERT
 **Download the pre-trained model**
-# Multiple versions of BERT is available. I recommend 'uncased_L-12_H-768_A-12' version/
-+ [Download Goolge BERT Model](https://github.com/google-research/bert)
-+ Unzip it and put it in the `__data__` folder.
-+ Put train, validation and test dataset into `__data__` folder.
++ [Download Goolge BERT Model](https://github.com/google-research/bert) - I recommend 'uncased_L-12_H-768_A-12' version**
++ Unzip and put it in the `__data__` folder.
++ Put train, validation (if any) and test dataset into `__data__` folder.
 
 
-## How to train the mode ?
+## How to work with this?
 **It's easy**
 ```
 # To train model
