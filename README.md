@@ -31,7 +31,7 @@ $ ./run_model.sh
 $ ./run_model_new.sh
 
 # Validate model: Set the model checkpoint to be used at --init_checkpoint
-$ ./run_val.sh
+$ ./run_eval.sh
 
 # Get predictions: Set the model checkpoint to be used at --init_checkpoint
 $ ./run_predict.sh
