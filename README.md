@@ -52,7 +52,7 @@ $ ./run_predict.sh
 ```
 
 ## Performance
-**Achieved an AUC of 0.93 on Test Set.**
+**Achieved an AUC of 0.92 on Test Set.**
 
 - - - -
 
