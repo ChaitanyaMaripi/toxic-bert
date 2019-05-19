@@ -103,15 +103,16 @@ class ToxicProcessor(DataProcessor):
         examples = list()
         for (i, line) in enumerate(lines):
             guid = "{}-{}".format(set_type.upper(), str(i))
+            text = re.sub("[^a-zA-Z0-9 ]", "", str(line[1]))
             if set_type == "train" or set_type == "dev":
-                text_a = tokenization.convert_to_unicode(str(line[1]))
+                text_a = tokenization.convert_to_unicode(text)
                 if line[0] >= 0.5:
                     ins_label = "Toxic"
                 else:
                     ins_label = "Not Toxic"
                 label = tokenization.convert_to_unicode(ins_label)
             else:
-                text_a = tokenization.convert_to_unicode(str(line[0]))
+                text_a = tokenization.convert_to_unicode(text)
                 label = None
             print("Guid: {}\t Text_a: {} -> Label: {}\n".format(guid, text_a, text_b, label))
             examples.append(InputExample(guid=guid, text_a=text_a, label=label))
