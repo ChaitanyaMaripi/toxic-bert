@@ -53,15 +53,16 @@ class DataProcessor(object):
         lines = list()
         with open(input_file, mode="r") as f:
             reader = csv.reader(f, delimiter=",")
-            if stage == "train":
+            if stage == "train" or stage == "dev":
                 for line in reader:
                     text = line[2]
                     label = line[1]
                     lines.append((label, text))
-            else:
-                # Testing stage
+            elif stage == "test":
                 for line in reader:
                     lines.append(line[1])
+            else:
+                print("Wrong stage passed: {}".format(stage))
             return lines
 
 
@@ -73,6 +74,14 @@ class ToxicProcessor(DataProcessor):
         try:
             lines = self._read_csv(os.path.join(data_dir, "train.csv"), "train")
             examples = self._create_examples(lines, "train")
+        except Exception as e:
+            print(e)
+    
+    def get_dev_examples(self, data_dir):
+        """See base class."""
+        try:
+            lines = self._read_csv(os.path.join(data_dir, "dev.csv"), "dev")
+            examples = self._create_examples(lines, "dev")
         except Exception as e:
             print(e)
     
@@ -94,10 +103,9 @@ class ToxicProcessor(DataProcessor):
         examples = list()
         for (i, line) in enumerate(lines):
             guid = "{}-{}".format(set_type.upper(), str(i))
-            if set_type == "train":
+            if set_type == "train" or set_type == "dev":
                 text_a = tokenization.convert_to_unicode(str(line[1]))
-                if line[0] >= 0.4:
-                    # After visualizing data came up with this separator
+                if line[0] >= 0.5:
                     ins_label = "Toxic"
                 else:
                     ins_label = "Not Toxic"
@@ -108,6 +116,4 @@ class ToxicProcessor(DataProcessor):
             print("Guid: {}\t Text_a: {} -> Label: {}\n".format(guid, text_a, text_b, label))
             examples.append(InputExample(guid=guid, text_a=text_a, label=label))
         return examples
-
-
 
