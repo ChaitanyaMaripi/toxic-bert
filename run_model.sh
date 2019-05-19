@@ -1,0 +1,13 @@
+CUDA_VISIBLE_DEVICES=0 python -W ignore classifier.py \
+    --data_dir __data__/ \
+    --vocab_file __model__/uncased_L-12_H-768_A-12/vocab.txt \
+    --bert_config_file __model__/uncased_L-12_H-768_A-12/bert_config.json \
+    --init_checkpoint __model__/uncased_L-12_H-768_A-12/bert_model.ckpt \
+    --output_dir output_dir/ \
+    --model_dir model_dir/ \
+    --do_train \
+    --train_batch_size 3 \
+    --learning_rate 2e-5 \
+    --num_train_epochs 4 \
+    --do_lower_case \
+    --max_seq_length 256

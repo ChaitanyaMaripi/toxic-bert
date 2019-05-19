@@ -1,0 +1,11 @@
+CUDA_VISIBLE_DEVICES=0 python -W ignore classifier.py \
+    --data_dir __data__/ \
+    --vocab_file __model__/uncased_L-12_H-768_A-12/vocab.txt \
+    --bert_config_file __model__/uncased_L-12_H-768_A-12/bert_config.json \
+    --init_checkpoint model_dir/model_checkpoint_name \
+    --output_dir output_dir/ \
+    --model_dir model_dir/ \
+    --do_eval \
+    --eval_batch_size 6 \
+    --do_lower_case \
+    --max_seq_length 256
