@@ -623,7 +623,7 @@ def main(_):
 		result = estimator.predict(input_fn=predict_input_fn)
 
 		# Set output file
-		output_predict_file = os.path.join(args.output_dir, "prediction.csv")
+		output_predict_file = os.path.join(args.output_dir, "test_prediction.csv")
 		
 		# Write results one line at a time
 		with tf.gfile.GFile(output_predict_file, mode="w") as writer:
