@@ -1,5 +1,6 @@
 # ToxicBERT
 **Fine-tuning BERT for Toxicity classification**
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/189b57f845f944868d5219c0094fd719)](https://www.codacy.com/app/nityansuman/toxic-bert?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nityansuman/toxic-bert&amp;utm_campaign=Badge_Grade)
 
 *When first built toxicity models, they found that the models incorrectly learned to associate the names of frequently attacked identities with toxicity. Models predicted a high likelihood of toxicity for comments containing those identities (e.g. "gay"), even when those comments were not actually toxic (such as "I am a gay woman"). This happens because training data was pulled from available sources where unfortunately, certain identities are overwhelmingly referred to in offensive ways. Training a model from data with these imbalances risks simply mirroring those biases back to users.*
 
