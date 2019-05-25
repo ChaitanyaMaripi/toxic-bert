@@ -27,7 +27,9 @@ CSV Data Format:
 
 ## How to work with this?
 **It's easy**
-+ Set model checkpoint at --init_checkpoint (bert_model.ckpt file) *Note: Other than training Checkpoint name available in a file called checkpoint in model_dir folder.*
++ Set model checkpoint at --init_checkpoint (bert_model.ckpt file)
+
+*Note: Other than training Checkpoint name available in a file called checkpoint in model_dir folder.*
 + Set pre-trained model weights at ----vocab_file (vocab.txt file) and --bert_config_file (bert_config.json file)
 
 **Train model**
